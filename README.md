@@ -1,48 +1,57 @@
-# Pump.fun Clone (Fork)
-This repository provides an illustrative clone of Pump.fun, showcasing the core functionalities of the original Pump.fun smart contract on the Solana blockchain. This fork is designed primarily for educational and demonstration purposes, helping developers gain a better understanding of Pump.fun’s architecture, contract logic, and workflow.
+# USAFUN Smart Contract
+usafun smart contract on Solana Network
 
 ## Overview
-- Fork: Based on Pump.fun’s official contract.
-- Purpose: Demonstrates the essential features of Pump.fun, such as token deployment, swapping, curve reach logic, and withdrawal mechanisms.
-- Technology Stack:
-     Solana Program (on-chain)
-     Anchor Framework (if utilized)
-     Frontend/Backend (in separate repositories)
 
-## Program & Transactions
-Below are relevant links to the deployed program and various transaction references on the Solana Devnet:
-1. Program Address:
-3CCu4f3hXKne4i5uE7DHkiA9o4oqeAAFBNxR3BfYLivX
-2. Configuration Transaction:
-9977V82eQoGq1GLmcabizpLeVwtG6MjpEyDVvikG4J7VhcawwQ7uxEtJVumj1nCs5nsfDYTFRcRv4pvPyWRFh3a
-3. Token Launch Transaction:
-2Yc9N9oDQKkh2U89i3r7ciBJEUfSWAeVTVvmrLKs15wfJg1kK4Ax1J8uBxuBSExcQApCQBMw8nzxXLQrE14Ghn61
-4. Swap Transaction:
-3z9puJ6Jcum1iQ9eA5q6hxoaVAKyKGkFFJuwqBjcrmgrA6xbpiLxwB5GDpD3cD7Wzuo48NViAZKKT9u72N6QSxPS
-5. Curve Reach Transaction:
-2QtdKZrhYuwJtWrd7dhja8mnNqZSmR4qbpo9iSLnrhkZADF3zzm8DojYVisvVaiGAkgmoU4ocSyo65EewJkpjvNo
-6. Withdraw Transaction:
-21VnRkwjGSCgUJY4KUtaNf2Sc13BUpjXp8nCmMhUFn8PPFNMkFywJFY79ZzhdVhuQUwSjmhAbyuhQutamw8Fj27u
 
-Additional reference:
-5DunqPfmfuYs3cVDE7SowJ9F2jKtdq7t3E3yP5W63RBGgcoNdVPDQ72asotg7fjnEEFATfQuiwPRGc7xqvW3iF64?cluster=custom&customUrl=devnet
+https://github.com/user-attachments/assets/22761493-1a8a-42bf-97f1-8e747381af1f
 
-## Features
-- Token Launch & Configuration:
-Deploy and configure the token contract parameters, including distribution and tokenomics.
 
-- Swap Functionality:
-Allows users to swap tokens via on-chain transactions, showcasing the basic liquidity pool or market-making approach.
 
-- Curve Mechanics:
-Demonstrates the concept of curve reaching and related price adjustments or token distribution logic.
+## How Works
+1. Administrative Roles
 
-- Withdrawal Process:
-Encompasses safe and verifiable on-chain withdrawal of funds, ensuring trustless interactions.
+- Sets initial parameters(usafun config) and whitelist
+- Can Modify protocol parameters
+- Controls whitelist status
+- Fee recipient
+2. Bonding Curve Mechanism
+The protocol implements a constant product bonding curve (x * y = k).
+
+```
+TEST_DECIMALS = 6;
+TEST_CURVE_LIMIT_LAMPORT = 4_000_000_000;
+TEST_VIRTUAL_RESERVES_LAMPORT = 2_000_000_000;
+TEST_RESERVE_TOKEN = 950_000_000_000;
+TEST_TOKEN_SUPPLY = 1_000_000_000_000;
+```
+
+The bonding curve ensures price discovery and continuous liquidity for the token.
+3. Create a  Bonding Curve
+
+- Initialize curve parameters
+- Enable whitelist
+- Configure initial purchases
+
+4. Fee structure
+
+The fee rate is 1%(customizable) and it is taken for all the trades before and after the curve by the admin wallet
+ 
+5. Migration
+
+Migration is a critical process that occurs once the bonding curve has been completed and the tokens are empty. 
+
+People buy on the bonding curve and the market cap is growing. Once it reaches a market cap of $100k, the smart contract runs a CPI (Cross-Program Invocation) call to create a Raydium AMM.
+
+## Some Transactions Link
+1. Created Coin Address:
+https://solscan.io/token/F3VijpV5wpDAcG4LtDjDyoz3DEagRnoMSnVdCPpCUMYg?cluster=devnet
+2. Bonding Curve:
+- https://solscan.io/tx/eQ1bUPFunyQVScsiHsd2Q6ktYf3bTgPkxEGSxBxpsDawnay38MW8w1UPJ37KUnLRqHpQv5i77HN9eRZBLFZL9Lh?cluster=custom&customUrl=https://devnet.helius-rpc.com/?api-key=7387c4ee-fe6a-43a6-96ea-05e6534aa500
+3. Bonding Curve PDA Address:
+- E2eDwJtbiXnnTnD1S3H6ESxCxZS6MamWhv45cB6uKXiX
+
 
 ## Contact
 Telegram: @idioRusty
 Feel free to reach out if you need the full source code (smart contract, backend, and frontend) or have any other questions.
-
-## License
-This project is intended for educational and demonstration purposes. Please review the license details in this repository (or in the original Pump.fun source) to ensure compliance with any terms and conditions.
