@@ -1,48 +1,81 @@
-# Pump.fun Clone (Fork)
-This repository provides an illustrative clone of Pump.fun, showcasing the core functionalities of the original Pump.fun smart contract on the Solana blockchain. This fork is designed primarily for educational and demonstration purposes, helping developers gain a better understanding of Pump.fun’s architecture, contract logic, and workflow.
+# pumpfun fork program
 
-## Overview
-- Fork: Based on Pump.fun’s official contract.
-- Purpose: Demonstrates the essential features of Pump.fun, such as token deployment, swapping, curve reach logic, and withdrawal mechanisms.
-- Technology Stack:
-     Solana Program (on-chain)
-     Anchor Framework (if utilized)
-     Frontend/Backend (in separate repositories)
+## Setup
 
-## Program & Transactions
-Below are relevant links to the deployed program and various transaction references on the Solana Devnet:
-1. Program Address:
-3CCu4f3hXKne4i5uE7DHkiA9o4oqeAAFBNxR3BfYLivX
-2. Configuration Transaction:
-9977V82eQoGq1GLmcabizpLeVwtG6MjpEyDVvikG4J7VhcawwQ7uxEtJVumj1nCs5nsfDYTFRcRv4pvPyWRFh3a
-3. Token Launch Transaction:
-2Yc9N9oDQKkh2U89i3r7ciBJEUfSWAeVTVvmrLKs15wfJg1kK4Ax1J8uBxuBSExcQApCQBMw8nzxXLQrE14Ghn61
-4. Swap Transaction:
-3z9puJ6Jcum1iQ9eA5q6hxoaVAKyKGkFFJuwqBjcrmgrA6xbpiLxwB5GDpD3cD7Wzuo48NViAZKKT9u72N6QSxPS
-5. Curve Reach Transaction:
-2QtdKZrhYuwJtWrd7dhja8mnNqZSmR4qbpo9iSLnrhkZADF3zzm8DojYVisvVaiGAkgmoU4ocSyo65EewJkpjvNo
-6. Withdraw Transaction:
-21VnRkwjGSCgUJY4KUtaNf2Sc13BUpjXp8nCmMhUFn8PPFNMkFywJFY79ZzhdVhuQUwSjmhAbyuhQutamw8Fj27u
+Only needed once per chain
 
-Additional reference:
-5DunqPfmfuYs3cVDE7SowJ9F2jKtdq7t3E3yP5W63RBGgcoNdVPDQ72asotg7fjnEEFATfQuiwPRGc7xqvW3iF64?cluster=custom&customUrl=devnet
+## Deployment
 
-## Features
-- Token Launch & Configuration:
-Deploy and configure the token contract parameters, including distribution and tokenomics.
+Program is deployed
 
-- Swap Functionality:
-Allows users to swap tokens via on-chain transactions, showcasing the basic liquidity pool or market-making approach.
+## Config
 
-- Curve Mechanics:
-Demonstrates the concept of curve reaching and related price adjustments or token distribution logic.
+Call the `configure` instruction to set the config for the program +
+Sets the fee amounts and allowed launch parameters.
 
-- Withdrawal Process:
-Encompasses safe and verifiable on-chain withdrawal of funds, ensuring trustless interactions.
+## Prerequites
 
-## Contact
-Telegram: @idioRusty
-Feel free to reach out if you need the full source code (smart contract, backend, and frontend) or have any other questions.
+Install Rust, Solana, and AVM: https://solana.com/docs/intro/installation
 
-## License
-This project is intended for educational and demonstration purposes. Please review the license details in this repository (or in the original Pump.fun source) to ensure compliance with any terms and conditions.
+Remember to install anchor v0.30.1.
+
+## Quick Start
+
+### Build the program
+
+```bash
+# build the program
+anchor run build
+
+# For those who use a different CARGO_TARGET_DIR location (like me I used ${userHome}/.cargo/target)
+# then you'll need to move the <program-name>.so back to $PWD/target/deploy/<program-name.so>.
+
+# E.g:
+ln -s $HOME/.cargo/target/sbf-solana-solana/release/pumpfun.so $PWD/target/deploy/pumpfun.so
+```
+
+### Test program on devnet
+
+Set the cluster as devnet in `Anchor.toml`:
+```bash
+[provider]
+cluster = "<DEVNET_RPC>"
+```
+
+Deploy program:
+```bash
+anchor deploy
+```
+
+#### Use CLI to test the program
+
+Initialize program:
+```bash
+yarn script config
+```
+
+Launch a token:
+```bash
+yarn script launch
+```
+
+Add Whitelist
+```bash
+yarn script addWl
+```
+
+Swap SOL for token:
+```bash
+yarn script swap -t <TOKEN_MINT> -a <SWAP_AMOUNT> -s <SWAP_DIRECTION>
+```
+`TOKEN_MINT`: You can get token mint when you launch a token
+`SWAP_AMOUNT`: SOL/Token amount to swap
+`SWAP_DIRECTION`: 0 - Buy token, 1 - Sell token
+
+### Test program on MainNet
+#### Use CLI to test the program 
+Migrate token to raydium once the curve is completed:
+```bash
+yarn script migrate -t <TOKEN_MINT>
+```
+`TOKEN_MINT`: mint address of the token to be launched on the raydium
