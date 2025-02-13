@@ -1,5 +1,5 @@
-# USAFUN Smart Contract
-usafun smart contract on Solana Network
+# Pumpfun Smart Contract Forking(USAFUN Smart Contract)
+The Pump.fun Smart Contract Fork is an innovative platform that enables users to create tokens, markets, and liquidity pools on Raydium/Meteora. Building upon the core features of Pump.fun, this enhanced project offers additional capabilities for managing token authorities, customizing token properties, setting up whitelists, and handling liquidity pools with advanced functionality.
 
 ## Overview
 
