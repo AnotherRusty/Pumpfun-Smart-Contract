@@ -54,6 +54,3 @@ People buy on the bonding curve and the market cap is growing. Once it reaches a
   - https://solscan.io/tx/3z9puJ6Jcum1iQ9eA5q6hxoaVAKyKGkFFJuwqBjcrmgrA6xbpiLxwB5GDpD3cD7Wzuo48NViAZKKT9u72N6QSxPS?cluster=devnet
 ### 5. Bonding Curve Reaching Tx
   - https://solscan.io/tx/2QtdKZrhYuwJtWrd7dhja8mnNqZSmR4qbpo9iSLnrhkZADF3zzm8DojYVisvVaiGAkgmoU4ocSyo65EewJkpjvNo?cluster=devnet
-### 6. Withdraw Tx
-  - https://solscan.io/tx/21VnRkwjGSCgUJY4KUtaNf2Sc13BUpjXp8nCmMhUFn8PPFNMkFywJFY79ZzhdVhuQUwSjmhAbyuhQutamw8Fj27u?cluster=devnet
-  - https://solscan.io/tx/5DunqPfmfuYs3cVDE7SowJ9F2jKtdq7t3E3yP5W63RBGgcoNdVPDQ72asotg7fjnEEFATfQuiwPRGc7xqvW3iF64?cluster=custom&customUrl=devnet
