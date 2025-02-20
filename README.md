@@ -4,10 +4,6 @@ This repo gives basic understanding on the pumpfun(pump.fun) smart contracts. To
 ## USAFun(Original pumpfun smart contract forking)
 The following video shows how USAFun smart contract works. The USAFun smart contract is built by forking original pumpfun smart contract and adding its own features
 
-https://github.com/user-attachments/assets/22761493-1a8a-42bf-97f1-8e747381af1f
-
-
-
 ## How Works
 ### 1. Administrative Roles
 
